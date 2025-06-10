@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      enabled: false
+    gateway:
+      routes:
+        - id: r1
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - name: Path
+              args:
+                pattern: /api/customers/**
+        - id: r2
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - name: Path
+              args:
+                pattern: /api/products/**
+    discovery:
+      enabled: true
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
