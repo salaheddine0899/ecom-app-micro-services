@@ -5,19 +5,11 @@ spring:
     config:
       enabled: false
     gateway:
-      routes:
-        - id: r1
-          uri: lb://CUSTOMER-SERVICE
-          predicates:
-            - name: Path
-              args:
-                pattern: /api/customers/**
-        - id: r2
-          uri: lb://INVENTORY-SERVICE
-          predicates:
-            - name: Path
-              args:
-                pattern: /api/products/**
+      server:
+        webflux:
+          discovery:
+            locator:
+              lower-case-service-id: true
     discovery:
       enabled: true
 server:
@@ -29,3 +21,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
+
