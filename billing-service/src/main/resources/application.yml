@@ -1,3 +1,29 @@
 spring:
   application:
     name: billing-service
+  data:
+    rest:
+      base-path: /api
+  datasource:
+    url: jdbc:h2:mem:bills-db
+  h2:
+    console:
+      enabled: true
+  cloud:
+    discovery:
+      enabled: true
+    config:
+      enabled: false
+server:
+  port: 8087
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
