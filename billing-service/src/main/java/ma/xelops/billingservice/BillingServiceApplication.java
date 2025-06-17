@@ -32,7 +32,7 @@ public class BillingServiceApplication {
                                         ProductRestClient productRestClient,
                                         CustomerRestClient customerRestClient){
         return args -> {
-            Collection<ProductDto> products = productRestClient.getProducts().getContent();
+            Collection<ProductDto> products = productRestClient.getAllProducts().getContent();
             Collection<CustomerDto> customers = customerRestClient.getAllCustomers().getContent();
 
             customers.forEach(customer -> {
